@@ -24,6 +24,10 @@ function TopAnimeList() {
     </div>
     if (error) return <div>Error: {error}</div>;
 
+    const shoot = (a) => {
+        alert(a);
+    }
+
     return (
 
         <Swiper
@@ -35,15 +39,18 @@ function TopAnimeList() {
             }}
             navigation={true}
             modules={[Pagination, Navigation]}
-            className="py-11"
+            className="bg-rose-500"
         >
             {topAnime.map((anime) => (
-                <SwiperSlide><div className="flex flex-col h-full">
-                    <img
-                        src={anime.image}
-                        alt="Burger" />
-                        <p>{anime.title}</p>
-                </div></SwiperSlide>
+                <SwiperSlide>
+                    <div onClick={() => shoot(anime.title)} className="hover:cursor-pointer flex flex-col justify-center items-center h-full bg-amber-500">
+                        <div className='h-72'>
+                            <img
+                                src={anime.image}
+                                alt="Burger" />
+                        </div>
+                        <p className='line-clamp-2'>{anime.title}</p>
+                    </div></SwiperSlide>
             ))
             }
         </Swiper>
