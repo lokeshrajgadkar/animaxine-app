@@ -8,13 +8,14 @@ export const useAnimeStore = create((set) => ({
   fetchTopAnime: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch('https://api.jikan.moe/v4/top/anime/');
+      const response = await fetch('https://yumaapi.vercel.app/top-airing');
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
-      set({ topAnime: data.data, loading: false });
-      console.log("Jikan API result: "+ topAnime)
+      set({ topAnime: data.results, loading: false });
+       //console.log("Jikan API result: "+ data)
     } catch (error) {
       set({ error: error.message, loading: false });
+      console.error(error);
     }
   },
 }));
@@ -26,13 +27,14 @@ export const useSpotlightAnimeStore = create((set) => ({
   fetchSpotlightAnime: async () => {
     set({ loading: true, error: null });
     try {
-      const response = await fetch('https://yumaapi.vercel.app/top-airing');
+      const response = await fetch('https://yumaapi.vercel.app/spotlight');
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
-      set({ spotlightAnime: data.results, loading: false });
-      // console.log(spotlightAnime)
+      set({ spotlightAnime: data, loading: false });
+        console.log(data)
     } catch (error) {
       set({ error: error.message, loading: false });
+      console.error(error);
     }
   },
 }));

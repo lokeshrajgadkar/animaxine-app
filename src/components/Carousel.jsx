@@ -26,7 +26,7 @@ const Carousel = () => {
                                     </div> */}
                         <div className="carousel-item h-50 w-60">
                             <img
-                                src={anime.images.webp.large_image_url}
+                                src={anime.images}
                                 alt="Burger" />
                         </div>
 

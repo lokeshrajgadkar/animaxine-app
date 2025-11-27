@@ -30,8 +30,8 @@ function RootComponent() {
                                 <li><Link to="/" className="[&.active]:font-bold">
                                     Home
                                 </Link></li>
-                                <li><Link to="/spotlightAnime" className="[&.active]:font-bold">
-                                    Spotlight Anime
+                                <li><Link to="/stopAnime" className="[&.active]:font-bold">
+                                    Top Anime
                                 </Link></li>
                                 <li><Link to="/about" className="[&.active]:font-bold">
                                     About
@@ -46,8 +46,8 @@ function RootComponent() {
                             <li><Link to="/" className="[&.active]:font-bold  text-yellow-500">
                                 Home
                             </Link></li>
-                            <li><Link to="/spotlightAnime" className="[&.active]:font-bold  text-yellow-500">
-                                Spotlight Anime
+                            <li><Link to="/topAnime" className="[&.active]:font-bold  text-yellow-500">
+                                Top Anime
                             </Link></li>
                             <li><Link to="/about" className="[&.active]:font-bold  text-yellow-500">
                                 About

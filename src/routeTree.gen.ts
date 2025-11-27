@@ -9,13 +9,13 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as SpotlightAnimeRouteImport } from './routes/spotlightAnime'
+import { Route as TopAnimeRouteImport } from './routes/topAnime'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 
-const SpotlightAnimeRoute = SpotlightAnimeRouteImport.update({
-  id: '/spotlightAnime',
-  path: '/spotlightAnime',
+const TopAnimeRoute = TopAnimeRouteImport.update({
+  id: '/topAnime',
+  path: '/topAnime',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AboutRoute = AboutRouteImport.update({
@@ -32,40 +32,40 @@ const IndexRoute = IndexRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/spotlightAnime': typeof SpotlightAnimeRoute
+  '/topAnime': typeof TopAnimeRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/spotlightAnime': typeof SpotlightAnimeRoute
+  '/topAnime': typeof TopAnimeRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/spotlightAnime': typeof SpotlightAnimeRoute
+  '/topAnime': typeof TopAnimeRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/spotlightAnime'
+  fullPaths: '/' | '/about' | '/topAnime'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/spotlightAnime'
-  id: '__root__' | '/' | '/about' | '/spotlightAnime'
+  to: '/' | '/about' | '/topAnime'
+  id: '__root__' | '/' | '/about' | '/topAnime'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  SpotlightAnimeRoute: typeof SpotlightAnimeRoute
+  TopAnimeRoute: typeof TopAnimeRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/spotlightAnime': {
-      id: '/spotlightAnime'
-      path: '/spotlightAnime'
-      fullPath: '/spotlightAnime'
-      preLoaderRoute: typeof SpotlightAnimeRouteImport
+    '/topAnime': {
+      id: '/topAnime'
+      path: '/topAnime'
+      fullPath: '/topAnime'
+      preLoaderRoute: typeof TopAnimeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/about': {
@@ -88,7 +88,7 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  SpotlightAnimeRoute: SpotlightAnimeRoute,
+  TopAnimeRoute: TopAnimeRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,5 +1,6 @@
 import { createFileRoute } from '@tanstack/react-router'
-import TopAnimeList from '../components/TopAnimeList'
+import SpotlightAni from '../components/SpotlightAni'
+import Banner from '../components/Banner'
 
 export const Route = createFileRoute('/')({
   component: RouteComponent,
@@ -7,7 +8,8 @@ export const Route = createFileRoute('/')({
 
 function RouteComponent() {
   return (<div>
-    <TopAnimeList />
+    <Banner />
+    <SpotlightAni />
   </div>
   )
 }
