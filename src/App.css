@@ -1,0 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import "tailwindcss";
+@theme {  --font-game: "Press Start 2P", sans-serif; }
+@plugin "daisyui" {
+  themes: light --default, dark --prefersdark, acid;
+}
+
