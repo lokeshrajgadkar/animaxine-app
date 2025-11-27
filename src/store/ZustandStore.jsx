@@ -43,6 +43,7 @@ export const useAnimeInfoStore = create((set) => ({
   animeInfo: [],
   loading: false,
   error: null,
+  
   fetchAnimeInfo: async (animeId) => {
     set({ loading: true, error: null });
     try {

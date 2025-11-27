@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAnimeStore } from '../store/ZustandStore';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -9,14 +9,17 @@ import 'swiper/css/navigation';
 
 // import required modules
 import { Navigation, Pagination } from 'swiper/modules';
+import { useNavigate } from '@tanstack/react-router';
 
 
 function TopAnimeList() {
+    const [animeId, setAnimeId] = useState("");
+    const navigate = useNavigate();
     const { topAnime, loading, error, fetchTopAnime } = useAnimeStore();
 
     useEffect(() => {
-        fetchTopAnime();
-    }, [fetchTopAnime]);
+        fetchTopAnime(animeId);
+    }, [animeId, fetchTopAnime]);
 
     if (loading) return
     <div >
@@ -24,8 +27,11 @@ function TopAnimeList() {
     </div>
     if (error) return <div>Error: {error}</div>;
 
-    const shoot = (a) => {
-        alert(a);
+    const getAnimeDetailPage = (id) => {
+        navigate({
+            to: '/anime/$id',
+            params: { id: String(id) },
+        })
     }
 
     return (
@@ -43,14 +49,17 @@ function TopAnimeList() {
         >
             {topAnime.map((anime) => (
                 <SwiperSlide>
-                    <div onClick={() => shoot(anime.title)} className="hover:cursor-pointer 
+                    <div onClick={() => getAnimeDetailPage(anime.id)} className="hover:cursor-pointer 
                     flex flex-col justify-center items-center h-full">
                         <div className='h-72'>
                             <img
                                 src={anime.image}
                                 alt="Burger" />
                         </div>
-                        <p className='line-clamp-2'>{anime.title}</p>
+                        <div className="tooltip hover:tooltip-open tooltip-top" data-tip={anime.title}>
+                            <p className='line-clamp-2'>{anime.title}</p>
+                        </div>
+                        
                     </div></SwiperSlide>
             ))
             }

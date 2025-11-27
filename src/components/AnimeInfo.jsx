@@ -1,21 +1,66 @@
 import React, { useEffect } from 'react'
 import { useAnimeInfoStore } from '../store/ZustandStore';
+import ImageCard from './ImageCard';
 
-const AnimeInfo = ({animeId}) => {
-    const { animeInfo, loading, error, fetchAnimeInfo } = useAnimeInfoStore();
-    
-        useEffect(() => {
-            fetchAnimeInfo(animeId);
-        }, [fetchAnimeInfo]);
-    
-        if (loading) return
-        <div >
-            <span className="loading loading-bars loading-xl text-warning"></span>;
-        </div>
-        if (error) return <div>Error: {error}</div>;
+const AnimeInfo = ({ animeId }) => {
+  const { animeInfo, loading, error, fetchAnimeInfo } = useAnimeInfoStore();
+
+  useEffect(() => {
+    fetchAnimeInfo(animeId);
+  }, [fetchAnimeInfo]);
+
+  if (loading) return
+  <div >
+    <span className="loading loading-bars loading-xl text-warning"></span>;
+  </div>
+  if (error) return <div>Error: {error}</div>;
+
   return (
-    <div>AnimeInfo {animeInfo.title}
-    <img src={animeInfo.image} alt="" /></div>
+    <div className='p-5'>
+      <div className="hero bg-base-200 min-h-12 p-3">
+        <div className="hero-content flex-col lg:flex-row">
+          <ImageCard animeTitle={animeInfo.title} animeImg={animeInfo.image} />
+          {/* <img
+            src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
+            className="max-w-sm rounded-lg shadow-2xl"
+          /> */}
+          <div className='gap-3 flex flex-col'>
+
+            <h1 className="text-5xl font-bold">{animeInfo.title}</h1>
+            <p className="py-6 w-2xl line-clamp-2">
+              {animeInfo.description}
+            </p>
+            
+            <div className='flex flex-row gap-3'>
+              <div class="badge badge-soft badge-secondary">{animeInfo.type}</div>
+              <div className="badge badge-outline badge-warning">Total Episodes: {animeInfo.total_episodes}</div>
+            </div>
+
+            
+            <div className='flex flex-row gap-3'>
+              <div className="badge badge-soft badge-warning">{animeInfo.status}</div>
+              <div className="badge badge-error">Aired: {animeInfo.aired}</div>
+            </div>
+
+            <div className='flex flex-row gap-3'>
+              {animeInfo.genres.map((genre) => (
+                  <div className="badge badge-outline badge-info">{genre}</div>
+              ))}
+              
+            </div>
+
+            <button className="btn btn-outline btn-success">Watch Now</button>
+            <div className="divider"></div>
+
+            <div></div>
+          </div>
+        </div>
+      </div>
+
+
+
+      {/* <img src={animeInfo.image} alt="" /> */}
+    </div>
   )
 }
 
