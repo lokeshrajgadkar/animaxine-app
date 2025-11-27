@@ -39,11 +39,12 @@ function TopAnimeList() {
             }}
             navigation={true}
             modules={[Pagination, Navigation]}
-            className="bg-rose-500"
+            className="my-5 p-5"
         >
             {topAnime.map((anime) => (
                 <SwiperSlide>
-                    <div onClick={() => shoot(anime.title)} className="hover:cursor-pointer flex flex-col justify-center items-center h-full bg-amber-500">
+                    <div onClick={() => shoot(anime.title)} className="hover:cursor-pointer 
+                    flex flex-col justify-center items-center h-full">
                         <div className='h-72'>
                             <img
                                 src={anime.image}
