@@ -4,6 +4,8 @@
 @plugin "daisyui" {
   themes: light --default, dark --prefersdark, acid;
 }
+// Default theme. ~960B
+import '@vime/core/themes/default.css';
 
 .swiper {
 
