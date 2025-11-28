@@ -1,6 +1,33 @@
-import React from 'react'
+import { useNavigate } from '@tanstack/react-router';
+import React, { useEffect, useState } from 'react'
+import { useAnimeEpisodeSourcesStore } from '../store/ZustandStore';
 
 const EpisodesList = ({ animeInfo, episodes }) => {
+    const [episodeId, setEpisodeId] = useState("jujutsu-kaisen-tv-534$episode$141674");
+    const [sub, setSub] = useState("sub");
+    const [server, setServer] = useState("vidcloud");
+    const navigate = useNavigate();
+    const { animeSources, subtitles, loading, error, fetchAnimeEpisodeSource } = useAnimeEpisodeSourcesStore();
+
+    useEffect(() => {
+        fetchAnimeEpisodeSource(episodeId, sub, server);
+    }, [episodeId, sub, server, fetchAnimeEpisodeSource]);
+
+    if (loading) return
+    <div >
+        <span className="loading loading-bars loading-xl text-warning"></span>;
+    </div>
+    if (error) return <div>Error: {error}</div>;
+
+    const getAnimeVideoPlayerPage = (episodeId) => {
+        navigate({
+            to: 'anime/$episodeId',
+            params: { 
+                episodeId: String(episodeId)
+             },
+        })
+    }
+
     return (
         <div className="max-h-80 overflow-auto">
             <ul className="list bg-base-100 rounded-box shadow-md">
@@ -8,7 +35,9 @@ const EpisodesList = ({ animeInfo, episodes }) => {
                 <li className="p-5 pb-2 text-xs opacity-60 tracking-wide">Episodes</li>
 
                 {episodes?.map((episode) => (
-                    <li className="list-row hover:cursor-pointer hover:bg-accent/20
+                    <li 
+                    onClick={() => getAnimeVideoPlayerPage(episode.id)}
+                    className="list-row hover:cursor-pointer hover:bg-accent/20
                     transition delay-150 duration-300 ease-in-out hover:-translate-y-1 hover:scale-95">
                         <div className="text-4xl font-thin opacity-30 tabular-nums">{episode.number}</div>
                         <div><img className="size-10 rounded-box" src={animeInfo.image} /></div>

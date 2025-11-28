@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as TopAnimeRouteImport } from './routes/topAnime'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AnimeEpisodeIdRouteImport } from './routes/anime/$episodeId'
 import { Route as AnimeAnimeIdRouteImport } from './routes/anime/$animeId'
 
 const TopAnimeRoute = TopAnimeRouteImport.update({
@@ -29,6 +30,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AnimeEpisodeIdRoute = AnimeEpisodeIdRouteImport.update({
+  id: '/anime/$episodeId',
+  path: '/anime/$episodeId',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AnimeAnimeIdRoute = AnimeAnimeIdRouteImport.update({
   id: '/anime/$animeId',
   path: '/anime/$animeId',
@@ -40,12 +46,14 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/topAnime': typeof TopAnimeRoute
   '/anime/$animeId': typeof AnimeAnimeIdRoute
+  '/anime/$episodeId': typeof AnimeEpisodeIdRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/topAnime': typeof TopAnimeRoute
   '/anime/$animeId': typeof AnimeAnimeIdRoute
+  '/anime/$episodeId': typeof AnimeEpisodeIdRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -53,13 +61,25 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/topAnime': typeof TopAnimeRoute
   '/anime/$animeId': typeof AnimeAnimeIdRoute
+  '/anime/$episodeId': typeof AnimeEpisodeIdRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about' | '/topAnime' | '/anime/$animeId'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/topAnime'
+    | '/anime/$animeId'
+    | '/anime/$episodeId'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about' | '/topAnime' | '/anime/$animeId'
-  id: '__root__' | '/' | '/about' | '/topAnime' | '/anime/$animeId'
+  to: '/' | '/about' | '/topAnime' | '/anime/$animeId' | '/anime/$episodeId'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/topAnime'
+    | '/anime/$animeId'
+    | '/anime/$episodeId'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -67,6 +87,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   TopAnimeRoute: typeof TopAnimeRoute
   AnimeAnimeIdRoute: typeof AnimeAnimeIdRoute
+  AnimeEpisodeIdRoute: typeof AnimeEpisodeIdRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -92,6 +113,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/anime/$episodeId': {
+      id: '/anime/$episodeId'
+      path: '/anime/$episodeId'
+      fullPath: '/anime/$episodeId'
+      preLoaderRoute: typeof AnimeEpisodeIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/anime/$animeId': {
       id: '/anime/$animeId'
       path: '/anime/$animeId'
@@ -107,6 +135,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   TopAnimeRoute: TopAnimeRoute,
   AnimeAnimeIdRoute: AnimeAnimeIdRoute,
+  AnimeEpisodeIdRoute: AnimeEpisodeIdRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

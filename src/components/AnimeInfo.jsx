@@ -20,7 +20,7 @@ const AnimeInfo = ({ animeId }) => {
     <div className='p-5'>
       <div className="hero bg-base-200 min-h-12 p-3">
         <div className="hero-content flex-col lg:flex-row">
-          <ImageCard animeTitle={animeInfo?.title} animeImg={animeInfo.image} />
+          <ImageCard animeTitle={animeInfo?.title} animeImg={animeInfo?.image} />
           {/* <img
             src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.webp"
             className="max-w-sm rounded-lg shadow-2xl"
