@@ -27,10 +27,10 @@ function TopAnimeList() {
     </div>
     if (error) return <div>Error: {error}</div>;
 
-    const getAnimeDetailPage = (id) => {
+    const getAnimeDetailPage = (animeId) => {
         navigate({
-            to: '/anime/$id',
-            params: { id: String(id) },
+            to: '/anime/$animeId',
+            params: { animeId: String(animeId) },
         })
     }
 

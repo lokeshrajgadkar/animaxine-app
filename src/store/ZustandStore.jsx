@@ -12,7 +12,7 @@ export const useAnimeStore = create((set) => ({
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
       set({ topAnime: data.results, loading: false });
-       //console.log("Jikan API result: "+ data)
+      //console.log("Top Anime: "+ data.results)
     } catch (error) {
       set({ error: error.message, loading: false });
       console.error(error);
@@ -43,15 +43,16 @@ export const useAnimeInfoStore = create((set) => ({
   animeInfo: [],
   loading: false,
   error: null,
-  
+  genres: [],
+  episodes: [],
   fetchAnimeInfo: async (animeId) => {
     set({ loading: true, error: null });
     try {
       const response = await fetch(`https://yumaapi.vercel.app/info/${animeId}`);
       if (!response.ok) throw new Error('Network response was not ok');
       const data = await response.json();
-      set({ animeInfo: data, loading: false });
-        console.log(data)
+      set({ animeInfo: data, loading: false, genres: data.genres, episodes: data.episodes });
+      console.log("anime id: "+data)
     } catch (error) {
       set({ error: error.message, loading: false });
       console.error(error);
