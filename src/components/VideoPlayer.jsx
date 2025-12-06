@@ -19,7 +19,7 @@ import { useEffect } from "react";
 const VideoPlayer = ({ episodeId }) => {
   const { animeSources, subtitles, loading, error, fetchAnimeEpisodeSource } = useAnimeEpisodeSourcesStore();
 
-  const proxyURL=`http://localhost:3000/api/v1/streamingProxy?url=${animeSources[0]?.url}`;
+  const proxyURL=`https://m3u8-streaming-proxy-eta.vercel.app/api/v1/streamingProxy?url=${animeSources[0]?.url}`;
   const url = "https://vault-14.owocdn.top/stream/14/07/d863a663daf4e8f632af84f2f83325a3b5a6aac088e0d981cd8ba6f5fc0db312/uwu.m3u8";
   // useEffect(() => {
   //   fetchAnimeEpisodeSource(episodeId, subtitles);
@@ -39,7 +39,7 @@ const VideoPlayer = ({ episodeId }) => {
 
 
       
-      {/* <MediaController
+      <MediaController
       style={{
         width: "100%",
         aspectRatio: "16/9",
@@ -68,7 +68,7 @@ const VideoPlayer = ({ episodeId }) => {
         <MediaFullscreenButton />
         <MediaCaptionsButton  mediaSubtitlesList={subtitles}/>
       </MediaControlBar>
-    </MediaController> */}
+    </MediaController>
     </div>
     
   );

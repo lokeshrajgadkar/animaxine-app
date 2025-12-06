@@ -72,6 +72,7 @@ export const useAnimeEpisodeSourcesStore = create((set) => ({
           method: 'GET', // Or 'POST', 'PUT', 'DELETE', etc.
           headers: {
             'Access-Control-Allow-Origin': '*',
+            
             // 'Custom-Header': 'some-value'
           }
           // For POST/PUT requests, you'd also include a 'body' property:

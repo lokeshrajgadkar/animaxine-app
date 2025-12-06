@@ -30,7 +30,7 @@ function RootComponent() {
                                 <li><Link to="/" className="[&.active]:font-bold">
                                     Home
                                 </Link></li>
-                                <li><Link to="/stopAnime" className="[&.active]:font-bold">
+                                <li><Link to="/topAnime" className="[&.active]:font-bold">
                                     Top Anime
                                 </Link></li>
                                 <li><Link to="/about" className="[&.active]:font-bold">
