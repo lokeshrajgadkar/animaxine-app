@@ -8,7 +8,7 @@ export const Route = createFileRoute('/')({
 
 function RouteComponent() {
   return (<div>
-    <Banner />
+    {/* <Banner /> */}
     <SpotlightAni />
   </div>
   )
